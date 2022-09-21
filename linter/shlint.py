@@ -17,17 +17,19 @@ def main():
         elif arg in ["-o", "--overwrite"]:
             config["overwrite"] = True
         elif arg.endswith("/"):
-            directories.append(arg)
+            if arg not in directories:
+                directories.append(arg)
         elif arg.endswith((".tex")):
-            files.append(arg)
+            if arg not in files:
+                files.append(arg)
         else:
             printer.unrecognized(arg)
-    print("files:")
-    print(files)
-    print("directories:")
-    print(directories)
-    print("config:")
-    print(config)
+    # print("files:")
+    # print(files)
+    # print("directories:")
+    # print(directories)
+    # print("config:")
+    # print(config)
     for f in files:
         lint.lint_file(f, "")
     for d in directories:
