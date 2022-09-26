@@ -26,7 +26,5 @@ def lint_directory(directory: str, config):
     # find directories
     # call lint_directory
     files = glob.glob(f"{directory}**/*.tex", recursive=True)
-    # print("Found these files:")
-    # print(files)
     for file in files:
         lint_file(file, config)

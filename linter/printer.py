@@ -21,4 +21,17 @@ def help():
     print(help_text)
 
 def unrecognized(arg: str):
+    """Prints a message explaining what argument didnt work
+
+    Args:
+        arg (str): the argument that wasnt recognized
+    """
     print(f"{arg} is an unrecognized command or not a .tex-file/directory.\nUse -h or --help for help")
+
+def problem_fixed(problem: str):
+    """prints a message stating that a problem was fixed
+
+    Args:
+        problem (str): _description_
+    """
+    print(problem + " fixed")

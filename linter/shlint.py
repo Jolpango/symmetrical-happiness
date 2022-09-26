@@ -7,7 +7,7 @@ def main():
     sys.argv.pop(0)
     if len(sys.argv) < 1:
         printer.help()
-        exit(1)
+        sys.exit(1)
     files = []
     directories = []
     config = {}
