@@ -1,17 +1,19 @@
 help_text = """
-Welcome to the LaTeX linter symmetrical-happiness
+\033[1mWelcome to the LaTeX linter symmetrical-happiness\033[0m
 -------------------------------------------------
 This linter only accepts .tex files
 
-The linter will load config from "sh_config.yaml", if it doesnt exist it will be generated
+The linter will load config from "sh_config.yaml" in your current directory, if it doesnt exist it will be generated
 
--h, --help      -> displays helpful information on how to use this program
--o, --overwrite -> formats your original files
--r, --reset     -> resets the config file, not reversable
-<filename>      -> lints the file
-<directory>/    -> lints all .tex files in directory and sub-directory
-
-example         -> python3 shlint.py file.tex directory/ -o
+\033[1mUsage:\033[0m
+    shlint [options...] [arguments..]
+\033[1mOptions:\033[0m
+    -h, --help      -> displays helpful information on how to use this program
+    -o, --overwrite -> formats your original files
+    -r, --reset     -> resets the config file, not reversable
+\033[1mArguments:\033[0m
+    <filename>      -> lints the file
+    <directory>/    -> lints all .tex files in directory and sub-directory
 
 Written by: Joel Funk Persson 2022
 """
