@@ -6,6 +6,6 @@ formatting:
   git_support:
     newline_after_sentence: true
   indentation:
-    excluded_blocks: []
-    spaces: 4
+    excluded_blocks: ["document"]
+    spaces: 3
 overwrite: false

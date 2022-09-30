@@ -15,8 +15,8 @@ def lint_file(file_path: str, config):
         contents = f.read()
         contents = contents.split("\n")
         contents = lint_blanklines(contents, config)
-        contents = lint_indentation(contents, config)
         # contents = lint_sentences(contents, config)
+        contents = lint_indentation(contents, config)
         contents = lint_comments(contents, config)
         with open("debug.tex", "w") as output:
             output.write("\n".join(contents))
@@ -65,6 +65,20 @@ def lint_indentation(file_contents, config):
     Returns:
         str[]: file_contents but modified
     """
+    spaces = config["formatting"]["indentation"]["spaces"]
+    excluded_blocks = config["formatting"]["indentation"]["excluded_blocks"]
+    blocks = [(index, line.strip()) for index, line in enumerate(file_contents) if r"\begin{" in line and not any(ex in line for ex in excluded_blocks)]
+    for i, line in enumerate(file_contents):
+        file_contents[i] = line.lstrip()
+    for _, block in enumerate(blocks):
+        end_block = block[1].replace("begin", "end")
+        end_block = end_block[:end_block.find("}") + 1]
+        print(end_block)
+        for index in range(block[0] + 1, len(file_contents)):
+            if end_block in file_contents[index]:
+                break
+            if file_contents[index] != "":
+                file_contents[index] = file_contents[index].rjust(len(file_contents[index]) + spaces)
 
     return file_contents
 
@@ -100,5 +114,25 @@ def lint_blanklines(file_contents, config):
     Returns:
         str[]: file_contents but modified
     """
+    blank_lines = config["formatting"]["blank_lines"]["nr"]
+    section_lines = [index for index, line in enumerate(file_contents) if r"\section" in line and index != 0]
+    adjustment = 0
+    for line_index in section_lines:
+        real_index = line_index + adjustment
+        current = real_index - 1
+        current_blank_lines = 0
+        while current >= 0 and file_contents[current] == "":
+            current = current - 1
+            current_blank_lines = current_blank_lines + 1
+        if current_blank_lines < blank_lines:
+            #add a few lines
+            nr_lines_to_add = blank_lines - current_blank_lines
+            file_contents = file_contents[:real_index] + ["" for _ in range(nr_lines_to_add)] + file_contents[real_index:]
+            adjustment += nr_lines_to_add
+        elif current_blank_lines > blank_lines:
+            #remove a few lines
+            nr_lines_to_remove = current_blank_lines - blank_lines
+            file_contents = file_contents[:real_index - nr_lines_to_remove] + file_contents[real_index:]
+            adjustment -= nr_lines_to_remove
 
     return file_contents

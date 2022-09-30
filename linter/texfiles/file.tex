@@ -12,7 +12,7 @@ type appears on the page, unless it contains
 one of the nine reserved characters of \LaTeX, listed
 below.
 \begin{verbatim}
-\ { } & _ ^ % ~ #
+   \ { } & _ ^ % ~ #
 \end{verbatim}
 If we want those characters to appear on the page, we
 must precede them by a backslash, or, in the special
@@ -26,6 +26,7 @@ are very short, and are typed the way you would expect, using
 using \verb+--+.  If you feel a need for a wide---dash, you can
 use \verb+---+.
 
+
 \section{Units}
 Lengths in \LaTeX\ can be given in a number of Units.\\
 \begin{tabular}{ll}
@@ -38,14 +39,26 @@ pt & Points (1in = 72pt)\\
 mm & Millimeters
 \end{tabular}
 
-\section{Space}
-The most direct way to make spaces is simply to use the
-\verb(\hspace( and \verb(\vspace( commands, for horizontal
-and vertical space, respectively.  Each takes one
-argument: a distance specification for the size of the space.
-The width or height of the space can be positive {\em or}
-negative.  Note that \verb(\vspace( can only be used in 
-vertical mode; that is, when you are starting a new paragraph
+   %                          annoying comment%
+
+
+
+
+
+
+
+
+
+
+
+   \section{Space}
+   The most direct way to make spaces is simply to use the %        s hit pasd
+   \verb(\hspace( and \verb(\vspace( commands, for horizontal
+   and vertical space, respectively.  Each takes one
+   argument: a distance specification for the size of the space.
+   The width or height of the space can be positive {\em or}
+   negative.  Note that \verb(\vspace( can only be used in 
+   vertical mode; that is, when you are starting a new paragraph
 or starting a float or doing something else that shifts text
 vertically.  It will not work in a line.
 
@@ -61,15 +74,15 @@ In that case we make a standard space using \verb(\ (; backslash-space.
 There are wider stretchy spaces available to us: \verb(\quad( and 
 \verb(\qquad(.  There is also a ``thin space'': \verb(\,(.
 The following words are separated by a thin space, a standard space,
-a quad, and a qquad, respectively.
+   a quad, and a qquad, respectively.
 
-\begin{center}
-space\,space\ space\quad{space}\qquad{space}
-\end{center}
+   \begin{center}
+   space\,space\ space\quad{space}\qquad{space}
+   \end{center}
 
-There are also predefined vertical spaces: \verb(\smallskip(
-\verb(\medskip(, and \verb(\bigskip(, that behave as their
-names imply.
+   There are also predefined vertical spaces: \verb(\smallskip(
+   \verb(\medskip(, and \verb(\bigskip(, that behave as their
+   names imply.
 
 There are also some exceptionally stretchy spaces that we can 
 use to push text around.  For example, the following line is 
@@ -89,13 +102,13 @@ The most basic is to make a horizontal rule using \verb(\hrule(.
 If you don't want an entire line, you can use \verb(\hrulefill(, as
 in \hrulefill.\\
 This command works like \verb(\hfill(, but instead of filling with
-space, it uses a horizontal rule to fill the line.
+   space, it uses a horizontal rule to fill the line.
 
-To make a box around some content, you can use the \verb(\framebox(
-command.  The framebox command puts a box around its argument,
-so that \verb(\framebox{text}( looks like \framebox{text}. It takes
-optional width and position arguments, so that
-\verb(\framebox[3in][l]{text}(
+   To make a box around some content, you can use the \verb(\framebox(
+   command.  The framebox command puts a box around its argument,
+   so that \verb(\framebox{text}( looks like \framebox{text}. It takes
+   optional width and position arguments, so that
+   \verb(\framebox[3in][l]{text}(
 appears as \\
 \framebox[3in][l]{text}.
 
@@ -113,13 +126,13 @@ A list of the variables we can set and their default values follows.
 \topmargin
 \textwidth
 \textheight
-\parskip
-\baselineskip
-\end{verbatim}
+   \parskip
+   \baselineskip
+   \end{verbatim}
 
-\section{Tables}
-Sometimes we need to typeset tables.  For example, 
-consider Table \ref{animaltable}.  
+   \section{Tables}
+   Sometimes we need to typeset tables.  For example, 
+   consider Table \ref{animaltable}.  
 Any resemblance of the numbers in 
 Table \ref{animaltable} to those from any authentic poll is purely coincidental.
 \begin{table}
@@ -128,34 +141,34 @@ Table \ref{animaltable} to those from any authentic poll is purely coincidental.
 Results from a poll that probably never happened.}
 \begin{tabular}{||l|c||}
 \hline
-\cline{1-2}
-\multicolumn{2}{||l||}{{\it What is your favorite animal?}}\\
-\hline
-Animal & Percentage of respondents\\
-\hline
-Dog & 43\%\\
-Cat & 44\%\\
-Schwarzenegger & 9\%\\
-We kill animals & 4\%\\
-\hline
-\hline
-\end{tabular}
-\end{center}
-\end{table}
+   \cline{1-2}
+   \multicolumn{2}{||l||}{{\it What is your favorite animal?}}\\
+   \hline
+   Animal & Percentage of respondents\\
+   \hline
+   Dog & 43\%\\
+   Cat & 44\%\\
+   Schwarzenegger & 9\%\\
+   We kill animals & 4\%\\
+   \hline
+   \hline
+   \end{tabular}
+   \end{center}
+   \end{table}
 
-\section{Figures}
-We can also put figures into our latex documents.  For example, the
-image in Figure \ref{sniper} is found at 
-{\tt http://www.math.wsu.edu/kcooper/M300/sniper.jpg}, but must
-be converted to encapsulated postscript before it can be included
-in this document.
-\begin{figure}[ht]
-\begin{center}
-\includegraphics[width=4in]{sniper.eps}
-\caption{\label{sniper}
-Cats take vengeance on 4\% of respondents \cite{calvin}.}
-\vfill
-\end{center}
+   \section{Figures}
+   We can also put figures into our latex documents.  For example, the
+   image in Figure \ref{sniper} is found at 
+   {\tt http://www.math.wsu.edu/kcooper/M300/sniper.jpg}, but must
+      be converted to encapsulated postscript before it can be included
+      in this document.
+   \begin{figure}[ht]
+   \begin{center}
+   \includegraphics[width=4in]{sniper.eps}
+   \caption{\label{sniper}
+   Cats take vengeance on 4\% of respondents \cite{calvin}.}
+   \vfill
+   \end{center}
 \end{figure}
 
 \section{Homemade commands}
@@ -168,14 +181,14 @@ If you know that a particular expression will appear repeatedly
 in your document, you can make an abbreviation for it, or even
 a command that allows you to specify arguments.  In our case,
 the sequence ``\dickens{{\it fill in the blank}}''
-is to appear many times in this section, so we created a command
-as follows:
-\begin{verbatim}
-\newcommand{\dickens}[1]{It was the best of #1. 
-   It was the worst of #1.}
-\end{verbatim}
-This command takes one argument, which appears wherever a \#1 appears
-in the text for the command.  Thus, to typeset ``\dickens{examples}'',
+   is to appear many times in this section, so we created a command
+   as follows:
+   \begin{verbatim}
+   \newcommand{\dickens}[1]{It was the best of #1. 
+      It was the worst of #1.}
+   \end{verbatim}
+   This command takes one argument, which appears wherever a \#1 appears
+   in the text for the command.  Thus, to typeset ``\dickens{examples}'',
 we need only to type \verb(\dickens{examples}(.
 
 \section{Citations and References}
@@ -188,14 +201,14 @@ environment gives us automatic numbering of our references,
 while associating those numbers with names, so that we can
 refer to the references using the \verb(\cite( command.
 Likewise, for internal references, such as those to Figure \ref{sniper},
-we can assign labels to a counter using the \verb(\label(
-command, and refer to them using the \verb(\ref( command.
+   we can assign labels to a counter using the \verb(\label(
+   command, and refer to them using the \verb(\ref( command.
 
-\begin{thebibliography}{X}
-\bibitem{knuth} Knuth, D., {\bf The \TeX book,} Addison-Wesley, Reading, 1984.
-\bibitem{lamport} Lamport, L., {\bf \LaTeX: A Document Preparation System,}
-Addison-Wesley, Reading, 1986.
-\bibitem{calvin} Watterson, B., {\bf Homicidal Psycho Jungle Cat,}
-Andrews McMeel, New Jersey, 1994.
-\end{thebibliography}
-\end{document}
+   \begin{thebibliography}{X}
+   \bibitem{knuth} Knuth, D., {\bf The \TeX book,} Addison-Wesley, Reading, 1984.
+   \bibitem{lamport} Lamport, L., {\bf \LaTeX: A Document Preparation System,}
+   Addison-Wesley, Reading, 1986.
+   \bibitem{calvin} Watterson, B., {\bf Homicidal Psycho Jungle Cat,}
+   Andrews McMeel, New Jersey, 1994.
+   \end{thebibliography}
+   \end{document}
