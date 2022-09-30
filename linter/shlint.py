@@ -38,9 +38,9 @@ def main():
             printer.unrecognized(arg)
     start = time.time()
     for f in files:
-        lint.lint_file(f, "")
+        lint.lint_file(f, config)
     for d in directories:
-        lint.lint_directory(d, "")
+        lint.lint_directory(d, config)
     end = time.time()
     time_ms = round((end - start) * 1000, 2)
     print(f"Time elapsed: {time_ms}ms")
