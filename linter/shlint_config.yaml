@@ -7,5 +7,5 @@ formatting:
     newline_after_sentence: true
   indentation:
     excluded_blocks: ["document"]
-    spaces: 3
+    spaces: 4
 overwrite: false
