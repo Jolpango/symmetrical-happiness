@@ -73,10 +73,10 @@ def lint_indentation(file_contents, config):
     """
     spaces = config["formatting"]["indentation"]["spaces"]
     excluded_blocks = config["formatting"]["indentation"]["excluded_blocks"]
-    blocks = ([(index, line.strip()) for index, line in enumerate(file_contents)
-        if line.startswith(r"\begin{") and not any(ex in line for ex in excluded_blocks)])
     for i, line in enumerate(file_contents):
         file_contents[i] = line.lstrip()
+    blocks = ([(index, line.strip()) for index, line in enumerate(file_contents)
+        if line.startswith(r"\begin{") and not any(ex in line for ex in excluded_blocks)])
     for _, block in enumerate(blocks):
         end_block = block[1].replace("begin", "end")
         end_block = end_block[:end_block.find("}") + 1]
@@ -99,13 +99,14 @@ def lint_sentences(file_contents, config):
         str[]: file_contents but modified
     """
     if config["formatting"]["git_support"]["newline_after_sentence"]:
-        lines_with_dots = [index for index, line in enumerate(file_contents) if ". " in line]
+        sentence_end = [". ", "! ", "? "]
+        lines_with_dots = [index for index, line in enumerate(file_contents) if any(s in line for s in sentence_end)]
         for line in lines_with_dots:
             comment_index = file_contents[line].find("%")
-            dot_indices = [m.start() for m in re.finditer(r"\.\s+", file_contents[line])]
+            dot_indices = [m.start() for m in re.finditer(r"(\.|\!|\?)\s+", file_contents[line])]
             dot_indices_before = [x for x in dot_indices if (comment_index == -1 or x < comment_index) and x + 1 < len(file_contents[line])]
             between_brackets = [x.span() for x in re.finditer(r"(\{.*?\}|\(.*?\))", file_contents[line])]
-            dot_before_comment = [x.span() for x in re.finditer(r"\.\s*\%", file_contents[line])]
+            dot_before_comment = [x.span() for x in re.finditer(r"(\.|\!|\?)\s*\%", file_contents[line])]
             dots_to_remove = []
             if between_brackets:
                 for dot_index, dot in enumerate(dot_indices_before):

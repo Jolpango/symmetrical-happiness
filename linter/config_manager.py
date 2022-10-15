@@ -23,15 +23,23 @@ def generate_config():
     # Create dictionary with default settings
     # Write to yaml file
     # Return dictionary
-    default_config = {
+    default_cfg = default_config()
+    with io.open(config_path, "w", encoding="utf-8") as config_outfile:
+        yaml.dump(default_cfg, config_outfile, default_flow_style=False, allow_unicode=True)
+    return default_cfg
+
+def default_config():
+    """Returns default config
+    """
+    # Create dictionary with default settings
+    # Return dictionary
+    default_cfg = {
         "formatting" : {
             "comments" : { "spaces": 1 },
-            "indentation" : { "spaces": 4, "excluded_blocks": [] },
+            "indentation" : { "spaces": 4, "excluded_blocks": ["document", "verbatim"] },
             "blank_lines" : { "nr": 1 },
             "git_support": { "newline_after_sentence": True }
         },
         "overwrite": False
     }
-    with io.open(config_path, "w", encoding="utf-8") as config_outfile:
-        yaml.dump(default_config, config_outfile, default_flow_style=False, allow_unicode=True)
-    return default_config
+    return default_cfg
