@@ -1,0 +1,13 @@
+formatting:
+  blank_lines:
+    nr: 1
+  comments:
+    spaces: 1
+  git_support:
+    newline_after_sentence: true
+  indentation:
+    excluded_blocks:
+    - document
+    - verbatim
+    spaces: 4
+overwrite: false

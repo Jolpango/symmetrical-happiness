@@ -12,7 +12,7 @@ type appears on the page, unless it contains
 one of the nine reserved characters of \LaTeX, listed
 below.
 \begin{verbatim}
-   \ { } & _ ^ % ~ #
+\ { } & _ ^ % ~ #
 \end{verbatim}
 If we want those characters to appear on the page, we
 must precede them by a backslash, or, in the special
@@ -34,13 +34,13 @@ use \verb+---+.
 Lengths in \LaTeX\ can be given in a number of Units.
 \\
 \begin{tabular}{ll}
-   cm & Centimeters\\
-   em & The width of the letter M in the current font\\
-   ex & The height of the letter x in the current font\\
-   in & Inches\\
-   pc & Picas (1pc = 12pt)\\
-   pt & Points (1in = 72pt)\\
-   mm & Millimeters
+    cm & Centimeters\\
+    em & The width of the letter M in the current font\\
+    ex & The height of the letter x in the current font\\
+    in & Inches\\
+    pc & Picas (1pc = 12pt)\\
+    pt & Points (1in = 72pt)\\
+    mm & Millimeters
 \end{tabular}
 
 % annoying comment% 
@@ -77,7 +77,7 @@ The following words are separated by a thin space, a standard space,
 a quad, and a qquad, respectively.
 
 \begin{center}
-   space\,space\ space\quad{space}\qquad{space}
+    space\,space\ space\quad{space}\qquad{space}
 \end{center}
 
 There are also predefined vertical spaces: \verb(\smallskip(
@@ -135,13 +135,13 @@ all even-numbered pages 0.
 \\
 A list of the variables we can set and their default values follows.
 \begin{verbatim}
-   \evensidemargin
-   \oddsidemargin
-   \topmargin
-   \textwidth
-   \textheight
-   \parskip
-   \baselineskip
+\evensidemargin
+\oddsidemargin
+\topmargin
+\textwidth
+\textheight
+\parskip
+\baselineskip
 \end{verbatim}
 
 \section{Tables}
@@ -152,25 +152,25 @@ consider Table \ref{animaltable}.
 Any resemblance of the numbers in 
 Table \ref{animaltable} to those from any authentic poll is purely coincidental.
 \begin{table}
-   \begin{center}
-      \caption{\label{animaltable}
-      Results from a poll that probably never happened.
-      }
-      \begin{tabular}{||l|c||}
-         \hline
-         \cline{1-2}
-         \multicolumn{2}{||l||}{{\it What is your favorite animal?}}\\
-         \hline
-         Animal & Percentage of respondents\\
-         \hline
-         Dog & 43\%\\
-         Cat & 44\%\\
-         Schwarzenegger & 9\%\\
-         We kill animals & 4\%\\
-         \hline
-         \hline
-      \end{tabular}
-   \end{center}
+    \begin{center}
+        \caption{\label{animaltable}
+        Results from a poll that probably never happened.
+        }
+        \begin{tabular}{||l|c||}
+            \hline
+            \cline{1-2}
+            \multicolumn{2}{||l||}{{\it What is your favorite animal?}}\\
+            \hline
+            Animal & Percentage of respondents\\
+            \hline
+            Dog & 43\%\\
+            Cat & 44\%\\
+            Schwarzenegger & 9\%\\
+            We kill animals & 4\%\\
+            \hline
+            \hline
+        \end{tabular}
+    \end{center}
 \end{table}
 
 \section{Figures}
@@ -188,13 +188,13 @@ jpg}, but must
 be converted to encapsulated postscript before it can be included
 in this document.
 \begin{figure}[ht]
-   \begin{center}
-      \includegraphics[width=4in]{sniper.
-      eps}
-      \caption{\label{sniper}
-      Cats take vengeance on 4\% of respondents \cite{calvin}.}
-      \vfill
-   \end{center}
+    \begin{center}
+        \includegraphics[width=4in]{sniper.
+        eps}
+        \caption{\label{sniper}
+        Cats take vengeance on 4\% of respondents \cite{calvin}.}
+        \vfill
+    \end{center}
 \end{figure}
 
 \section{Homemade commands}
@@ -215,10 +215,10 @@ the sequence ``\dickens{{\it fill in the blank}}''
 is to appear many times in this section, so we created a command
 as follows:
 \begin{verbatim}
-   \newcommand{\dickens}[1]{It was the best of #1.
+\newcommand{\dickens}[1]{It was the best of #1.
 
-   It was the worst of #1.
-   }
+It was the worst of #1.
+}
 \end{verbatim}
 This command takes one argument, which appears wherever a \#1 appears
 in the text for the command.
@@ -241,13 +241,13 @@ we can assign labels to a counter using the \verb(\label(
 command, and refer to them using the \verb(\ref( command.
 
 \begin{thebibliography}{X}
-   \bibitem{knuth} Knuth, D.
-   , {\bf The \TeX book,} Addison-Wesley, Reading, 1984.
-   \bibitem{lamport} Lamport, L.
-   , {\bf \LaTeX: A Document Preparation System,}
-   Addison-Wesley, Reading, 1986.
-   \bibitem{calvin} Watterson, B.
-   , {\bf Homicidal Psycho Jungle Cat,}
-   Andrews McMeel, New Jersey, 1994.
+    \bibitem{knuth} Knuth, D.
+    , {\bf The \TeX book,} Addison-Wesley, Reading, 1984.
+    \bibitem{lamport} Lamport, L.
+    , {\bf \LaTeX: A Document Preparation System,}
+    Addison-Wesley, Reading, 1986.
+    \bibitem{calvin} Watterson, B.
+    , {\bf Homicidal Psycho Jungle Cat,}
+    Andrews McMeel, New Jersey, 1994.
 \end{thebibliography}
 \end{document}

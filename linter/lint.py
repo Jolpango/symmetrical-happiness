@@ -2,6 +2,7 @@
 import glob
 import re
 import os
+import printer
 
 def lint_file(file_path: str, config):
     """lints a file
@@ -12,7 +13,7 @@ def lint_file(file_path: str, config):
     """
     print("linting file <" + file_path + ">")
     linted_file_string = ""
-    with open(file_path, "r+") as f:
+    with open(file_path, "r+", encoding="utf-8") as f:
         contents = f.read()
         contents = contents.split("\n")
         contents = lint_blanklines(contents, config)
@@ -21,13 +22,14 @@ def lint_file(file_path: str, config):
         contents = lint_comments(contents, config)
         linted_file_string = "\n".join(contents)
     if config["overwrite"]:
-        with open(file_path, "w") as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             f.write(linted_file_string)
     else:
         new_path = f"output/{file_path}"
         os.makedirs(os.path.dirname(new_path), exist_ok=True)
-        with open(new_path, "w") as output:
+        with open(new_path, "w", encoding="utf-8") as output:
             output.write(linted_file_string)
+
 
 def lint_directory(directory: str, config):
     """lints all .tex files in directory and subdirectories
@@ -36,7 +38,7 @@ def lint_directory(directory: str, config):
         directory (str): _description_
         config (_type_): _description_
     """
-    print("linting directory <" + directory + ">")
+    # print("linting directory <" + directory + ">")
     files = glob.glob(f"{directory}**/*.tex", recursive=True)
     for file in files:
         lint_file(file, config)
@@ -51,11 +53,10 @@ def lint_comments(file_contents, config):
     Returns:
         str[]: file_contents but modified
     """
-
     spaces = config["formatting"]["comments"]["spaces"]
     lines_with_comments = [index for index, line in enumerate(file_contents) if "%" in line]
     for index in lines_with_comments:
-        # Replaces %<any nr of spaces> or %<no_spaces> with %<x*" "> and doesnt have a \ before the %
+        # Replaces %<any nr of spaces> or %<no_spaces> with %<x*" ">and doesnt have a \ before the %
         expression = r"(?<!\\)(\%\s*)"
         replacement =  "%" + " " * spaces
         file_contents[index] = re.sub(expression, replacement, file_contents[index])
@@ -98,6 +99,7 @@ def lint_sentences(file_contents, config):
     Returns:
         str[]: file_contents but modified
     """
+
     if config["formatting"]["git_support"]["newline_after_sentence"]:
         sentence_end = [". ", "! ", "? "]
         lines_with_dots = [index for index, line in enumerate(file_contents) if any(s in line for s in sentence_end)]
@@ -124,6 +126,7 @@ def lint_sentences(file_contents, config):
                 file_contents[line] = file_contents[line][:dot_index + 1] + "\n" + file_contents[line][dot_index + 2:]
         file_contents = "\n".join(file_contents)
         file_contents = file_contents.split("\n")
+
     return file_contents
 
 def lint_blanklines(file_contents, config):
@@ -144,7 +147,8 @@ def lint_blanklines(file_contents, config):
     # contents_string = re.sub(expression, replacement, contents_string, flags=re.MULTILINE)
     # file_contents = contents_string.split(r"\n")
     # return file_contents
-    section_lines = [index for index, line in enumerate(file_contents) if r"\section" in line and index != 0]
+    section_lines = [index for index, line in
+        enumerate(file_contents) if r"\section" in line and index != 0]
     adjustment = 0
     for line_index in section_lines:
         real_index = line_index + adjustment
@@ -156,12 +160,15 @@ def lint_blanklines(file_contents, config):
         if current_blank_lines < blank_lines:
             #add a few lines
             nr_lines_to_add = blank_lines - current_blank_lines
-            file_contents = file_contents[:real_index] + ["" for _ in range(nr_lines_to_add)] + file_contents[real_index:]
+            file_contents = (file_contents[:real_index] +
+                ["" for _ in range(nr_lines_to_add)] + file_contents[real_index:])
             adjustment += nr_lines_to_add
         elif current_blank_lines > blank_lines:
             #remove a few lines
             nr_lines_to_remove = current_blank_lines - blank_lines
-            file_contents = file_contents[:real_index - nr_lines_to_remove] + file_contents[real_index:]
+            file_contents = (file_contents[:real_index - nr_lines_to_remove] +
+                file_contents[real_index:])
             adjustment -= nr_lines_to_remove
+
 
     return file_contents

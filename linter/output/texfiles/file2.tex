@@ -12,7 +12,7 @@ type appears on the page, unless it contains
 one of the nine reserved characters of \LaTeX, listed
 below.
 \begin{verbatim}
-    \ { } & _ ^ % ~ #
+\ { } & _ ^ % ~ #
 \end{verbatim}
 If we want those characters to appear on the page, we
 must precede them by a backslash, or, in the special
@@ -125,13 +125,13 @@ all even-numbered pages 0.5 inches wider than the default (which is
 \verb(\evensidemargin=0.5in(.\\
 A list of the variables we can set and their default values follows.
 \begin{verbatim}
-    \evensidemargin
-    \oddsidemargin
-    \topmargin
-    \textwidth
-    \textheight
-    \parskip
-    \baselineskip
+\evensidemargin
+\oddsidemargin
+\topmargin
+\textwidth
+\textheight
+\parskip
+\baselineskip
 \end{verbatim}
 
 \section{Tables}
@@ -192,9 +192,9 @@ the sequence ``\dickens{{\it fill in the blank}}''
 is to appear many times in this section, so we created a command
 as follows:
 \begin{verbatim}
-    \newcommand{\dickens}[1]{It was the best of #1.
+\newcommand{\dickens}[1]{It was the best of #1.
 
-    It was the worst of #1.}
+It was the worst of #1.}
 \end{verbatim}
 This command takes one argument, which appears wherever a \#1 appears
 in the text for the command.
