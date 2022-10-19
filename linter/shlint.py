@@ -30,7 +30,7 @@ def main():
         elif arg in ["-r", "--reset"]:
             config = config_manager.generate_config()
             sys.exit(0)
-        elif arg.endswith("/") or arg.endswith(r"\\"):
+        elif arg.endswith("/") or arg.endswith("\\"):
             if arg not in directories:
                 directories.append(arg)
         elif arg.endswith((".tex")):
