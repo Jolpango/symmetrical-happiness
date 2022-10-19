@@ -140,15 +140,17 @@ def lint_blanklines(file_contents, config):
         str[]: file_contents but modified
     """
     blank_lines = config["formatting"]["blank_lines"]["nr"]
-    # contents_string = "\n".join(file_contents)
-    # expression = r"^\n*(\\(section|subsection)\{\w+\})"
-    # new_lines = blank_lines * r"\n"
-    # replacement = new_lines + r"\g<1>"
-    # contents_string = re.sub(expression, replacement, contents_string, flags=re.MULTILINE)
-    # file_contents = contents_string.split(r"\n")
-    # return file_contents
-    section_lines = [index for index, line in
-        enumerate(file_contents) if r"\section" in line and index != 0]
+    section_types = [
+        r"\part",
+        r"\chapter",
+        r"\section",
+        r"\subsection",
+        r"\subsubsection",
+        r"\paragraph",
+        r"\subparagraph"
+    ]
+    section_lines = [index for index, line in enumerate(file_contents)
+        if any(line.strip().startswith(s) for s in section_types) and index != 0]
     adjustment = 0
     for line_index in section_lines:
         real_index = line_index + adjustment
