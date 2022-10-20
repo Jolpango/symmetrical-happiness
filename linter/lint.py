@@ -2,7 +2,6 @@
 import glob
 import re
 import os
-import printer
 
 def lint_file(file_path: str, config):
     """lints a file

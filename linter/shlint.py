@@ -5,9 +5,9 @@ Main module of symmetrical-happiness the LaTeX-linter
 """
 import time
 import sys
-import printer
-import lint
-import config_manager
+from linter import printer
+from linter import lint
+from linter import config_manager
 
 def main():
     """Main program of symmetrical-happiness
@@ -15,7 +15,7 @@ def main():
     # If no arguments, print help
     sys.argv.pop(0)
     if len(sys.argv) < 1:
-        printer.help()
+        printer.usage()
         sys.exit(1)
     files = []
     directories = []

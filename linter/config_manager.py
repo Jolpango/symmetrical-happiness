@@ -4,7 +4,7 @@ This module handles loading and generation of config files.
 
 import io
 import yaml
-import printer
+from linter import printer
 
 CONFIG_PATH = "shlint_config.yaml"
 
