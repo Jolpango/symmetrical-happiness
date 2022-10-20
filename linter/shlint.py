@@ -5,9 +5,9 @@ Main module of symmetrical-happiness the LaTeX-linter
 """
 import time
 import sys
-from linter import printer
-from linter import lint
-from linter import config_manager
+import printer
+import lint
+import config_manager
 
 def main():
     """Main program of symmetrical-happiness

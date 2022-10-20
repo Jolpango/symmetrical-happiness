@@ -4,7 +4,6 @@ This module handles loading and generation of config files.
 
 import io
 import yaml
-from linter import printer
 
 CONFIG_PATH = "shlint_config.yaml"
 
@@ -14,7 +13,7 @@ def load_config():
     try:
         with open(CONFIG_PATH, encoding="utf-8") as config_file:
             config = yaml.safe_load(config_file)
-            printer.config_loaded()
+            print("Existing config found")
             return config
     except FileNotFoundError:
         return generate_config()
@@ -28,7 +27,7 @@ def generate_config():
     default_cfg = default_config()
     with io.open(CONFIG_PATH, "w", encoding="utf-8") as config_outfile:
         yaml.dump(default_cfg, config_outfile, default_flow_style=False, allow_unicode=True)
-        printer.generate_config()
+        print("New config file has been generated or old one was overwritten.")
     return default_cfg
 
 def default_config():

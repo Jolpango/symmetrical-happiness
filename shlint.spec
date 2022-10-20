@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['linter/shlint.py'],
+    ['linter\\shlint.py'],
     pathex=[],
     binaries=[],
     datas=[],
