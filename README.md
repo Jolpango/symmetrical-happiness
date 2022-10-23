@@ -62,3 +62,9 @@ With the configuration file you can change how the rules are applied. For exampl
     sys - Used to get arguments passed from user.
     os - Used to create directories.
     unittest - Used to test functionality of linter rules.
+
+## Tests
+Every linter rule is unit tested. To run the test, run the file test.py
+All tests are located in the tests folder
+
+    python3 test.py
